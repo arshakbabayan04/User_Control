@@ -26,7 +26,7 @@ const User: FC = () => {
                     <h1 className="text-white text-center fs-2 font-bold text-4xl">
                         User Control
                     </h1>
-                    <div className="user_wrapper w-1/2 bg-slate-600 p-5 mx-auto mt-10 rounded-xl shadow-md shadow-indigo-700">
+                    <div className="user_wrapper bg-slate-600 p-5 mx-auto mt-10 rounded-xl shadow-md shadow-indigo-700">
                         <ul className="my-4 space-y-3">
                             {localUsers.map((el: any, index: number) => (
                                 <UserItem user={el} key={el.id} index={index} />

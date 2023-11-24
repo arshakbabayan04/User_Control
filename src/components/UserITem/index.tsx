@@ -57,7 +57,7 @@ const UserItem: FC<{ user: User; index: number }> = ({ user, index }) => {
             >
                 <div
                     id="block"
-                    className="flex items-center cursor-move p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow"
+                    className="flex items-center gap-2 flex-wrap overflow-hidden w-full cursor-move p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow"
                 >
                     <svg
                         aria-hidden="true"
@@ -183,7 +183,7 @@ const UserItem: FC<{ user: User; index: number }> = ({ user, index }) => {
                             fill="#F5841F"
                         />
                     </svg>
-                    <span className=" flex-1 text-black ms-3 whitespace-nowrap">
+                    <span className=" flex-1 text-black whitespace-nowrap">
                         {user.firstName} {user.lastName}
                     </span>
 

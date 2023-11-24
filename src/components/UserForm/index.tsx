@@ -4,18 +4,26 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
     addUser,
     changeUserData,
+    selectUser,
     toggleChangeUser,
     togglePopup,
 } from "../Users/userSlice";
 import { v4 as uuidv4 } from "uuid";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 const UserForm = () => {
     const dispatch = useAppDispatch();
     const { popupOpen, changeUser, selctedUserIndex, localUsers } =
         useAppSelector((state) => state.user);
-
-    const formik = useFormik({
+    const currentUser = localUsers[selctedUserIndex];
+    useEffect(() => {
+        if (currentUser && changeUser) {
+            formik.setValues(currentUser);
+        } else {
+            formik.setValues({ firstName: "", lastName: "" });
+        }
+    }, [currentUser, changeUser]);
+    const formik = useFormik<{ firstName: string; lastName: string }>({
         initialValues: {
             firstName: "",
             lastName: "",
@@ -39,6 +47,7 @@ const UserForm = () => {
             }
             dispatch(togglePopup());
             dispatch(toggleChangeUser(false));
+            dispatch(selectUser(null));
         },
     });
 
@@ -73,7 +82,10 @@ const UserForm = () => {
                                 type="button"
                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                 data-modal-hide="default-modal"
-                                onClick={() => dispatch(togglePopup())}
+                                onClick={() => {
+                                    dispatch(togglePopup());
+                                    dispatch(selectUser(null));
+                                }}
                             >
                                 <svg
                                     className="w-3 h-3"

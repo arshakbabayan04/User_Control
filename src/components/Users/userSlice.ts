@@ -7,7 +7,7 @@ interface userState {
     users: User[];
     popupOpen: boolean;
     changeUser: boolean;
-    selctedUserIndex: number | null;
+    selctedUserIndex: number;
     currentCard: number;
 }
 
@@ -35,7 +35,7 @@ const initialState: userState = {
     ],
     popupOpen: false,
     changeUser: false,
-    selctedUserIndex: null,
+    selctedUserIndex: 0,
     currentCard: 0,
 };
 
